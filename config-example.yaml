@@ -1,0 +1,45 @@
+log:
+  file: "./logs/pr-tracker.log"
+  level: "info"  # debug, info, warn, error
+  format: "text" # or "json"
+  max_size_mb: 10
+  max_backups: 5
+  max_age_days: 30
+  compress: true
+  stdout: false
+
+bitbucket:
+  domain: "your-bitbucket-server.com"
+  port: 443  # 443 for HTTPS, 4443 for custom HTTPS
+  workspace: "your_workspace"
+  user: "your_username"
+  app_password: "your_app_password"
+  repositories:
+    - "your_repository_name"
+
+pr_filter:
+  # Ignore PRs whose title contains any of these keywords
+  ignore_keywords:
+    - "[WIP]"
+    - "[DRAFT]"
+    - "[DO NOT MERGE]"
+  # Number of days without activity to consider a PR as stale
+  stale_after_days: 3
+
+notification:
+  interval_hours: 6  # Check every 6 hours
+
+notifiers:
+  smtp:
+    host: "smtp.yourprovider.com"
+    port: 587  # 587 for STARTTLS, 465 for SSL/TLS
+    user: "your_email@domain.com"
+    password: "your_email_password"
+    from: "your_email@domain.com"
+    to:
+      - "recipient1@domain.com"
+      - "recipient2@domain.com"
+  
+  teams:
+    # Microsoft Teams webhook URL for notifications (leave empty to disable)
+    webhook_url: "https://outlook.office.com/webhook/your-webhook-url" 
